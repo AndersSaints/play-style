@@ -1,6 +1,17 @@
 body {
     background-color: #001d3d;
 }
+
 #centered-title {
     color: #ffc300;
 }
+
+#central-div {
+    background-color: #ffc300;
+    height: 500px;
+}
+
+#subcentral-div {
+    background-color: #ffd60a;
+}
+
