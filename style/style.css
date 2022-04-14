@@ -15,3 +15,14 @@ body {
     background-color: #ffd60a;
 }
 
+#login-col {
+    background-color: aliceblue !important;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: -webkit-center;
+}
+
+.input-login {
+    width: 250px;
+    margin-bottom: 10px;
+}
