@@ -1,5 +1,5 @@
 body {
-    background-color: #001d3d;
+    background-color: #1b4965;
 }
 
 #centered-title {
@@ -7,12 +7,12 @@ body {
 }
 
 #central-div {
-    background-color: #ffc300;
+    background-color: #048ba8;
     height: 500px;
 }
 
 #subcentral-div {
-    background-color: #ffd60a;
+    background-color: #ffe97f;
 }
 
 #login-col {
