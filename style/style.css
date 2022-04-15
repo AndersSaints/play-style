@@ -1,25 +1,25 @@
 body {
-    background-color: #1b4965;
+  background-color: #1b4965;
 }
 
 #centered-title {
-    color: #ffc300;
+  color: #ffc300;
 }
 
 #central-div {
-    background-color: #048ba8;
-    height: 500px;
+  background-color: #048ba8;
+  height: 500px;
 }
 
 #subcentral-div {
-    background-color: #ffe97f;
+  background-color: #ffe97f;
 }
 
 #login-col {
-    background-color: aliceblue !important;
-    padding: 20px;
-    border-radius: 10px;
-    text-align: -webkit-center;
+  background-color: aliceblue !important;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: -webkit-center;
 }
 
 .input-login {
@@ -29,4 +29,15 @@ body {
 
 #login-btn:hover {
     color: #ced4da !important;
+  width: 250px;
+  margin-bottom: 10px;
+}
+
+#center-title-index {
+  font-family: "Lobster", cursive;
+}
+
+#center-text-index {
+  font-family: "Lobster", cursive;
+  font-size: 20px;
 }
