@@ -29,8 +29,6 @@ body {
 
 #login-btn:hover {
     color: #ced4da !important;
-  width: 250px;
-  margin-bottom: 10px;
 }
 
 #center-title-index {
@@ -40,4 +38,8 @@ body {
 #center-text-index {
   font-family: "Lobster", cursive;
   font-size: 20px;
+}
+
+#margin-title-index {
+    padding-left: 30px !important;
 }
