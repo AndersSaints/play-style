@@ -26,6 +26,11 @@
   <div id="nav-placeholder"></div>
   <!--end of Navigation bar-->
   <div class="container-fluid" id="central-div">
+  <?php
+    if($erro == 1) {
+        echo 'Usuário e/ou senha inválido(s)';
+    }
+?>
     <div class="container" id="subcentral-div">
       <div class="row">
         <div class="col-6" id="margin-title-index">

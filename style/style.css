@@ -9,6 +9,8 @@ body {
 #central-div {
   background-color: #048ba8;
   height: 500px;
+  text-decoration-color: #ced4da;
+  text-align: right;
 }
 
 #subcentral-div {
