@@ -4,6 +4,46 @@ if (!isset($_SESSION["nome_usuario"])) {
   header('Location: login.php');
   die;
 }
+
+include("db.class.php");
+
+$objDb = new db();
+$link = $objDb->conecta_mysql();
+
+
+if (isset($_FILES['video'])) {
+  $arquivo = $_FILES['video'];
+
+  if ($arquivo['error'])
+    die("Falha ao enviar arquivo");
+
+
+  if ($arquivo['size'] > 20971520)
+    die('Arquivo muito grande!! Max: 20MB');
+
+
+  $videos_dir = "videos/";
+  $nomeDoArquivo = $arquivo['name'];
+  $novoNomeDoArquivo = uniqid();
+  $extension = strtolower(pathinfo($nomeDoArquivo, PATHINFO_EXTENSION));
+  $extensions_arr = array("mp4", "avi", "3gp", "mov", "mpeg");
+
+  if (in_array($extension, $extensions_arr)) {
+
+    $path = $videos_dir . $novoNomeDoArquivo . "." . $extension;
+
+    $deu_certo = move_uploaded_file($arquivo["tmp_name"], $path);
+  }
+  $sql = "INSERT INTO videos (name, location) VALUES('$nomeDoArquivo','$path')";
+
+  if ($deu_certo) {
+    mysqli_query($link, $sql);
+    echo "<p>Arquivo enviado com sucesso!</p>";
+  } else {
+    echo 'Erro ao registrar o usuário!.' . mysqli_connect_error();
+  }
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -29,13 +69,12 @@ if (!isset($_SESSION["nome_usuario"])) {
       echo $_SESSION["nome_usuario"];
       ?>
     </h1>
-    <form action="video_proc.php" method="POST">
+    <form action="" method="POST" enctype='multipart/form-data'>
       <div class="input-group my-5">
-        <input type="file" class="form-control" aria-label="Upload" name="video">
-        <button class="btn btn-outline-secondary" type="submit" id="inputGroupFileAddon04">Enviar</button>
+        <input type="file" class="form-control" aria-label="Upload" name="video" required />
+        <button class="btn btn-outline-secondary" type="submit">Enviar</button>
       </div>
     </form>
-
   </div>
 
 
@@ -66,6 +105,13 @@ if (!isset($_SESSION["nome_usuario"])) {
     $(function() {
       $("#nav-placeholder").load("components/navbar.php");
     });
+    setTimeout(sumir, 3000)
+
+    function sumir() {
+      $("#error-alert").fadeTo(2000, 500).slideUp(500, function() {
+        $("#error-alert").slideUp(500);
+      });
+    }
   </script>
 </body>
 
