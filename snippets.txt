@@ -1,0 +1,15 @@
+
+
+
+
+<div class="row">
+                        <?php
+                        if ($erro == 1) {
+                            echo '<div class="row">
+                        <div class="alert alert-danger" id="error-alert">
+                            <label class="badge bg-danger">Erro! </label> Usuário e/ou senha inválido(s).
+                        </div>
+                    </div>';
+                        }
+                        ?>
+                    </div>
