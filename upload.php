@@ -45,6 +45,7 @@ if (isset($_FILES['video'])) {
     if ($deu_certo) {
       mysqli_query($link, $sql);
       $success = 1;
+      Header('location:upload.php');
     } else {
       echo 'Falha no envio!.' . mysqli_connect_error();
     }
@@ -113,47 +114,27 @@ $user_data = mysqli_fetch_all($results_id);
     <div class="row">
       <!-- <div class="card-group"> -->
 
-        <?php
-        foreach ($user_data as $dados) {
+      <?php
+      foreach ($user_data as $dados) {
 
-        ?>
-          <div class="card col-md-4 col-sm-12 mx-auto">
-            <video height="240" src="<?php echo $dados[3]; ?>" type="video/mp4" controls controlsList="nodownload" class="videoplayer"></video>
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <div class="row">
-                <a onclick="<?php  ?>" href="#" style="width: 6rem;" class="btn btn-danger col-sm-5 mx-auto">Delete</a>
-                <a onclick="share()" href="#" style="width: 6rem;" class="btn btn-primary col-sm-5 mx-auto">Share</a>
-              </div>
+      ?>
+        <div class="card col-md-4 col-sm-12 mx-auto">
+          <video height="240" src="<?php echo $dados[3]; ?>" type="video/mp4" controls controlsList="nodownload" class="videoplayer"></video>
+          <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <div class="row">
+              <a id="<?php echo $dados[0]; ?>" href="#" style="width: 6rem;" class="btn btn-danger col-sm-5 mx-auto btn-excluir">Delete</a>
+              <a href="#" style="width: 6rem;" class="btn btn-primary col-sm-5 mx-auto">Share</a>
             </div>
           </div>
+        </div>
 
-        <?php
-        }
-        ?>
+      <?php
+      }
+      ?>
       <!-- </div> -->
     </div>
   </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -173,16 +154,30 @@ $user_data = mysqli_fetch_all($results_id);
         $("#error-alert").slideUp(500);
       });
     }
-    document.getElementsByClassName("videoplayer").addEventListener("playing", event => {
-      const player = document.getElementsByClassName("videoplayer");
-      if (player.requestFullscreen)
-        player.requestFullscreen();
-      else if (player.webkitRequestFullscreen)
-        player.webkitRequestFullscreen();
-      else if (player.msRequestFullScreen)
-        player.msRequestFullScreen();
-      dd
-    })
+    // document.getElementsByClassName("videoplayer").addEventListener("playing", event => {
+    //   const player = document.getElementsByClassName("videoplayer");
+    //   if (player.requestFullscreen)
+    //     player.requestFullscreen();
+    //   else if (player.webkitRequestFullscreen)
+    //     player.webkitRequestFullscreen();
+    //   else if (player.msRequestFullScreen)
+    //     player.msRequestFullScreen();
+    //   dd
+    // })
+
+    $('.btn-excluir').click(function() {
+      let id = this.id;
+      $.ajax({
+        type: "POST",
+        url: 'http://localhost/play-style/delete.php',
+        data: {
+          id: id
+        },
+        dataType: 'JSON'
+      }).done(function(response) {
+        location.reload();
+      });
+    });
   </script>
 
 </body>
