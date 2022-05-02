@@ -17,18 +17,29 @@
     <div id="nav-placeholder"></div>
     <!--end of Navigation bar-->
     <div class="container my-5">
-        <form action="user_register.php" method="POST">
+        <form action="user_register.php" method="POST" class="needs-validation" novalidate>
             <div class="row">
-                <div class="col-md-4 d-block mx-auto" id="login-col">
+                <div class="col-lg-4 d-block mx-auto" id="login-col">
                     <img src="assets/images/logo.png" alt="Logo do site" width="38" height="40"
                         class="d-inline-block align-text-top">
                     <h1 class="text-center display-5">Cadastro</h1>
                     <div>
-                        <input name="email" type="email" class="form-control input-login" required placeholder="Email">
-                        <input name="password" type="password" class="form-control input-login" required placeholder="Senha">
-                        <input name="user" type="text" class="form-control input-login" required placeholder="Nome de usuário">
-                        <select name="elo" class="form-select input-login" required>
-                            <option value="">🎖️ Elo 🎖️</option>
+                        <input name="email" type="email" class="form-control input-login" id="validationEmail"
+                            placeholder="Email" required>
+                        <div class="invalid-feedback">
+                            Campo obrigatório!
+                        </div>
+                        <input name="password" type="password" class="form-control input-login" id="validationPass"
+                            placeholder="Senha" required>
+                        <div class="invalid-feedback">
+                            Campo obrigatório!
+                        </div>
+                        <input name="user" type="text" class="form-control input-login" id="validationUser"
+                            placeholder="Nome de usuário" required>
+                        <div class="invalid-feedback">
+                            Campo obrigatório!
+                        </div>
+                        <select name="elo" class="form-select input-login" aria-label="Floating Label" id="validationElo" required>
                             <option value="challenger">Challenger</option>
                             <option value="grao-mestre">Grão Mestre</option>
                             <option value="mestre">Mestre</option>
@@ -38,8 +49,11 @@
                             <option value="prata">Prata</option>
                             <option value="bronze">Bronze</option>
                             <option value="ferro">Ferro</option>
-                            <option value="unranked">Unranked</option>
+                            <option selected="unranked">Unranked</option>
                         </select>
+                        <div class="invalid-feedback">
+                            É necessário escolher o seu Elo!
+                        </div>
                         <button type="submit" class="btn btn-success">Cadastrar</button>
                     </div>
                 </div>
@@ -53,6 +67,27 @@
         $(function () {
             $("#nav-placeholder").load("components/navbar.php");
         });
+    </script>
+    <script>
+        (function () {
+            'use strict'
+
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            var forms = document.querySelectorAll('.needs-validation')
+
+            // Loop over them and prevent submission
+            Array.prototype.slice.call(forms)
+                .forEach(function (form) {
+                    form.addEventListener('submit', function (event) {
+                        if (!form.checkValidity()) {
+                            event.preventDefault()
+                            event.stopPropagation()
+                        }
+
+                        form.classList.add('was-validated')
+                    }, false)
+                })
+        })() 
     </script>
 </body>
 

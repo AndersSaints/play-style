@@ -1,15 +1,6 @@
-
-
-
-
-<div class="row">
-                        <?php
-                        if ($erro == 1) {
-                            echo '<div class="row">
-                        <div class="alert alert-danger" id="error-alert">
-                            <label class="badge bg-danger">Erro! </label> Usuário e/ou senha inválido(s).
-                        </div>
-                    </div>';
-                        }
-                        ?>
-                    </div>
+<div class="col-md-4 card" id="divvideo">
+            <video width="320" height="240" controls controlsList="nodownload" class="videoplayer">
+              <source src="<?php echo $dados[3]; ?>" type="video/mp4">
+            </video><br>
+            <small class="text-muted"><a href="http://localhost/play-style/<?php echo $dados[3]; ?>" target="_blank">Clique para compartilhar</a></small>
+          </div>
